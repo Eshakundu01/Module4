@@ -1,0 +1,6 @@
+portal.sign_up:
+  title: Sign Up
+  description: 'New Students can sign up here.'
+  parent: main
+  route_name: portal.sign_up
+  menu_name: main

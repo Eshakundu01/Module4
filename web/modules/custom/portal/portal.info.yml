@@ -1,0 +1,5 @@
+name: Student Portal
+type: module
+core_version_requirement: ^10
+description: 'Consists of forms, and pages that are displayed to the users.'
+package: Custom

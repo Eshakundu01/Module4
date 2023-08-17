@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Implements hooks in this file.
+ */
+
+/**
+ * Implements hook_mail().
+ */
+function portal_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'portal_submit':
+      $token_service = \Drupal::token();
+      $token_data = [
+        'body' => $params['values'],
+        'id' => $params['id'],
+      ];
+
+      $subject = 'Submission from [body:value:full_name]';
+      $message['subject'] = $token_service->replace($subject, $token_data, ['clear' => TRUE]);
+
+      $body = <<<EOT
+The form was submitted by [body:value:full_name] [body:value:email] [body:value:contact] [body:value:stream] [body:value:jyear] [body:value:pyear].
+The student id: [id:value:id].
+EOT;
+      $message['body'][] = $token_service->replace($body, $token_data, ['clear' => TRUE]);
+      break;
+  }
+}
