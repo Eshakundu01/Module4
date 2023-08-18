@@ -1,0 +1,24 @@
+uuid: e68b2397-1c99-4839-8717-8e016eac571f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.subjects.field_assets
+    - field.field.node.subjects.field_stream
+    - node.type.subjects
+  module:
+    - user
+id: node.subjects.teaser
+targetEntityType: node
+bundle: subjects
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_assets: true
+  field_stream: true

@@ -1,0 +1,8 @@
+uuid: 3e2dab36-c012-41d7-a5ca-9da8c900fa2d
+langcode: en
+status: true
+dependencies: {  }
+name: Stream
+vid: stream
+description: 'The stream in which the student studies.'
+weight: 0

@@ -47,20 +47,20 @@ function portal_schema(){
         'not null' => FALSE,
       ],
       'stream' => [
-        'description' => 'PStream of student',
+        'description' => 'Stream of student',
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
       ],
       'jyear' => [
         'description' => 'Joining year of student',
-        'type' => 'int',
+        'type' => 'varchar',
         'length' => 255,
         'not null' => FALSE,
       ],
       'pyear' => [
         'description' => 'Passing year of student',
-        'type' => 'int',
+        'type' => 'varchar',
         'length' => 255,
         'not null' => FALSE,
       ],

@@ -1,0 +1,38 @@
+uuid: 22f3d79d-2ef4-402b-a72b-f938abcefd44
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.subjects.field_assets
+    - field.field.node.subjects.field_stream
+    - node.type.subjects
+  module:
+    - file
+    - user
+id: node.subjects.default
+targetEntityType: node
+bundle: subjects
+mode: default
+content:
+  field_assets:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_stream:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

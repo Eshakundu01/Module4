@@ -8,6 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Mail\MailManager;
 use Drupal\Core\Messenger\Messenger;
 use Exception;
+use Drupal\user\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -165,13 +166,14 @@ class SignUpForm extends FormBase {
            ->fields($fields)->execute();
 
       $params = [
-        'values' => $fields,
-        'id' => $this->getId($fields['email']),
+        'values' => $field,
+        'id' => $this->getId($field['email']),
       ];
-      $this->mail->mail('portal', 'portal_submit', $fields['email'], 'en', $params);
+      $this->mail->mail('portal', 'portal_submit', $field['email'], 'en', $params);
       $this->mail->mail('portal', 'portal_submit', $this->getMail(), 'en', $params);
 
-      $this->message->addMessage('Form Submitted');
+      $this->message->addMessage('Form Submitted, Sign In Now');
+      $this->addStudent($field);
     } catch(Exception $e){
       $this->message->addMessage($e);
     }
@@ -204,7 +206,7 @@ class SignUpForm extends FormBase {
    *   The mail of the admin.
    */
   public function getMail() {
-    $query = $this->connection->select('user_field_data', 'ufd');
+    $query = $this->connection->select('users_field_data', 'ufd');
     $query->fields('ufd', ['mail']);
     $query->condition('ufd.uid', 1, '=');
     $result = $query->execute()->fetchAll();
@@ -212,5 +214,23 @@ class SignUpForm extends FormBase {
     foreach ($result as $record) {
       return $record->mail;
     }
+  }
+
+  /**
+   * Inserts the student in user database.
+   *
+   * @param array $fields
+   * @return void
+   */
+  public function addStudent($field) {
+    $user = User::create();
+
+    $user->setPassword($field['passcode']);
+    $user->enforceIsNew();
+    $user->setEmail($field['email']);
+    $user->setUsername($field['full_name']);
+    $user->set('init', $field['email']);
+    $user->activate();
+    $user->save();
   }
 }

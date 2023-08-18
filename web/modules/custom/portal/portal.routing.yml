@@ -4,6 +4,6 @@ portal.sign_up:
     _form: 'Drupal\portal\Form\SignUpForm'
     _title: 'Sign Up Page'
   requirements:
-    _permission: 'access content'
+    _role: 'anonymous'
 
 
