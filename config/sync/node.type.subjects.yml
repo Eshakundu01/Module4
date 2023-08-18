@@ -1,0 +1,18 @@
+uuid: fce2c90e-cddb-46f4-89db-41ebd3dc8c41
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Subjects
+type: subjects
+description: 'Stream specific Subjects that Academic Head are going to upload.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

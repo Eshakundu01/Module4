@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * Implements hooks in this file.
+ */
+
+/**
+ * Implements hook_mail().
+ */
+function portal_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'portal_submit':
+      $token_service = \Drupal::token();
+      $token_data = [
+        'array' => $params['values'],
+      ];
+
+      $subject = 'Submission from [array:value:full_name]';
+      $message['subject'] = $token_service->replace($subject, $token_data, ['clear' => TRUE]);
+
+      $body = <<<EOT
+The form was submitted by [array:value:full_name] [array:value:email] [array:value:contact] [array:value:stream] [array:value:jyear] [array:value:pyear].
+The student id: $params[id].
+EOT;
+      $message['body'][] = $token_service->replace($body, $token_data, ['clear' => TRUE]);
+      break;
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function portal_cron() {
+  // Query and delete outdated notices.
+  $current_date = new \DateTime('now');
+  $query = \Drupal::database()->select('node__field_notice_date', 'nfnd');
+  $query->fields('nfnd', ['entity_id']);
+  $query->condition('nfnd.bundle', 'article', '=');
+  $query->condition('nfnd.field_notice_date_value', $current_date->format('Y-m-d'), '<');
+  $query->execute();
+
+  foreach ($query as $row) {
+    node_delete($row->entity_id);
+  }
+}

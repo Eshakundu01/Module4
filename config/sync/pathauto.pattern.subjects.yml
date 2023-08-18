@@ -1,0 +1,22 @@
+uuid: d9283933-24b6-4c99-8282-7992d7bea9ed
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: subjects
+label: Subjects
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  e9dc1c86-ed03-4144-a327-b5e465d557de:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: e9dc1c86-ed03-4144-a327-b5e465d557de
+    context_mapping:
+      node: node
+    bundles:
+      subjects: subjects
+selection_logic: and
+weight: -5
+relationships: {  }

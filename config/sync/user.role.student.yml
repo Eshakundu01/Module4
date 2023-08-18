@@ -1,0 +1,9 @@
+uuid: c9830453-d5ce-4d28-b1c6-0e97d53dfb98
+langcode: en
+status: true
+dependencies: {  }
+id: student
+label: Student
+weight: 4
+is_admin: null
+permissions: {  }

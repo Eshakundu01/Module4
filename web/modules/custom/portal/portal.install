@@ -1,0 +1,71 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the field module.
+ */
+
+use Drupal\Core\Database\Database;
+ 
+/**
+ * Implements hook_schema().
+ */
+function portal_schema(){
+  $schema['students'] = [
+    'description' => 'The table for storing the students data.',
+    'fields' => [
+      'id' => [
+        'description' => 'The primary identifier for student',
+        'type' => 'serial',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ],
+      'full_name' => [
+        'description' => 'Student name',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'email' => [
+        'description' => 'Student second name.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'passcode' => [
+        'description' => 'Password of the portal',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'contact' => [
+        'description' => 'Phone number of student',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'stream' => [
+        'description' => 'Stream of student',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'jyear' => [
+        'description' => 'Joining year of student',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'pyear' => [
+        'description' => 'Passing year of student',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+  return $schema;
+}

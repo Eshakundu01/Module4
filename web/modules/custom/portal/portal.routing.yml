@@ -1,0 +1,9 @@
+portal.sign_up:
+  path: '/student-sign-up'
+  defaults:
+    _form: 'Drupal\portal\Form\SignUpForm'
+    _title: 'Sign Up Page'
+  requirements:
+    _role: 'anonymous'
+
+

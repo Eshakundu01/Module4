@@ -1,0 +1,25 @@
+uuid: 148bc483-e8d1-4ef3-9b10-9e77142c6c4b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.subjects
+  module:
+    - contextual
+    - file
+    - node
+    - system
+    - toolbar
+    - tour
+id: academic_head
+label: 'Academic Head'
+weight: 5
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access toolbar'
+  - 'access tour'
+  - 'create subjects content'
